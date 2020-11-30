@@ -4,7 +4,7 @@ import { ApolloProvider } from "react-apollo";
 import App, { Container } from "next/app";
 import { useRouter } from "next/router";
 import { AppProvider } from "@shopify/polaris";
-import { Provider, useClientRouting } from "@shopify/app-bridge-react";
+import { Provider, useClientRouting, useRoutePropagation } from "@shopify/app-bridge-react";
 import Cookies from "js-cookie";
 import "@shopify/polaris/dist/styles.css";
 import translations from "@shopify/polaris/locales/en.json";
@@ -19,6 +19,7 @@ const client = new ApolloClient({
 const MyRouter = ({ children }) => {
   const router = useRouter()
   useClientRouting(router);
+  useRoutePropagation(router.asPath);
 
   return children;
 };
