@@ -2,8 +2,10 @@ import { Page, Layout, Card, TextField } from "@shopify/polaris";
 import Link from "next/link";
 import { useField, useForm } from "@shopify/react-form";
 
+import { useContextualSaveBar } from "../hooks/useContextualSaveBar";
+
 const Index = () => {
-  const { fields, dirty, submit, submitting } = useForm({
+  const { fields, dirty, submit, submitting, reset } = useForm({
     fields: {
       text: useField({
         value: "",
@@ -16,6 +18,8 @@ const Index = () => {
     },
     makeCleanAfterSubmit: true,
   });
+
+  useContextualSaveBar({ dirty, submit, submitting, reset });
 
   return (
     <Page>
