@@ -3,6 +3,7 @@ import Link from "next/link";
 import { useField, useForm } from "@shopify/react-form";
 
 import { useContextualSaveBar } from "../hooks/useContextualSaveBar";
+import { useLeavePrevention } from "../hooks/useLeavePrevention";
 
 const Index = () => {
   const { fields, dirty, submit, submitting, reset } = useForm({
@@ -20,6 +21,7 @@ const Index = () => {
   });
 
   useContextualSaveBar({ dirty, submit, submitting, reset });
+  useLeavePrevention({ dirty, reset });
 
   return (
     <Page>
