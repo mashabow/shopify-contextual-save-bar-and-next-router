@@ -1,8 +1,8 @@
-import { Page, Layout, Card, TextField } from "@shopify/polaris";
-import Link from "next/link";
+import { Page, Layout, Card, TextField, Link } from "@shopify/polaris";
 import { useField, useForm } from "@shopify/react-form";
 
 import { useContextualSaveBar } from "../hooks/useContextualSaveBar";
+import { useRedirect } from "../hooks/useRedirect";
 
 const Index = () => {
   const { fields, dirty, submit, submitting, reset } = useForm({
@@ -20,6 +20,8 @@ const Index = () => {
   });
 
   useContextualSaveBar({ dirty, submit, submitting, reset });
+
+  const redirectTo = useRedirect();
 
   return (
     <Page>
@@ -39,8 +41,8 @@ const Index = () => {
           </Card>
 
           <Card sectioned>
-            <Link href="/another">
-              <a>Go to another page</a>
+            <Link onClick={() => redirectTo("/another")}>
+              Go to another page
             </Link>
           </Card>
         </Layout.Section>
